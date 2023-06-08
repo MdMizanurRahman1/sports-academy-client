@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
-        <nav className="bg-gradient-to-r from-[#decba4] via-[#3E5151] to-[#4ca1af] h-22">
+        <nav className="bg-gradient-to-r from-[#decba4] via-[#3E5151] to-[#4ca1af]">
             <div className="container mx-auto px-4 py-2 flex items-center justify-between">
                 <div className='flex items-center'>
                     <img
@@ -13,13 +14,14 @@ const Navbar = () => {
                     <a href="#" className="text-2xl font-bold text-black">Sports Academy</a>
                 </div>
                 <div className="hidden lg:flex items-center space-x-6">
-                    <a href="#" className="text-black hover:text-white transition-colors duration-300">Home</a>
+                    <Link to='/' className="text-black hover:text-white transition-colors duration-300">Home</Link>
                     <a href="#" className="text-black hover:text-white transition-colors duration-300">Instructors</a>
                     <a href="#" className="text-black hover:text-white transition-colors duration-300">Classes</a>
                     <a href="#" className="text-black hover:text-white transition-colors duration-300">Dashboard</a>
                     <div className="flex items-center">
                         <img src="#" alt="User Profile" className="w-8 h-8 rounded-full" />
                     </div>
+                    <Link to='/login'><button className="text-black bg-[#decba4] hover:text-black transition-colors duration-300 btn">Login</button></Link>
                 </div>
                 <div className="lg:hidden">
                     <div className="dropdown dropdown-end">
