@@ -2,7 +2,7 @@ import React from 'react';
 
 const Navbar = () => {
     return (
-        <nav className="bg-gradient-to-r from-[#decba4] via-[#3E5151] to-[#4ca1af] h-20">
+        <nav className="bg-gradient-to-r from-[#decba4] via-[#3E5151] to-[#4ca1af] h-22">
             <div className="container mx-auto px-4 py-2 flex items-center justify-between">
                 <div className='flex items-center'>
                     <img
