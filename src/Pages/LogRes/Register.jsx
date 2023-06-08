@@ -4,6 +4,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 
+
 const Register = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -11,38 +12,27 @@ const Register = () => {
     const navigate = useNavigate();
 
     const onSubmit = data => {
+        console.log(data);
 
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
+                console.log(loggedUser);
 
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        const saveUser = { name: data.name, email: data.email }
-                        fetch('http://localhost:5000/users', {
-                            method: 'POST',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                            body: JSON.stringify(saveUser)
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                                if (data.insertedId) {
-                                    reset();
-                                    Swal.fire({
-                                        position: 'top-end',
-                                        icon: 'success',
-                                        title: 'user created successfully',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                    // navigate('/');
-                                }
-                            })
-
+                        console.log('updated profile picture');
+                        reset();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'user created successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     })
                     .catch(error => console.log(error))
+
             })
     }
 
@@ -86,13 +76,17 @@ const Register = () => {
                             <input type="password" {...register("password", {
                                 required: true,
                                 minLength: 6,
-                                maxLength: 15,
+                                pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/
                             })} name='password' placeholder="password" className="input input-bordered" />
                             {errors.password?.type === 'required' && <p className='text-red-600'>Password is required</p>}
                             {errors.password?.type === 'minLength' && <p className='text-red-600'>Password must be six characters</p>}
+                            {errors.password?.type === 'pattern' && <p className='text-red-600'>Password must be one uppercase and one special character</p>}
+                        </div>
+                        <div className="form-control">
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                <span className="label-text">Confirm Password</span>
                             </label>
+                            <input type="password" name='confirmPassword' placeholder="Confirm password" className="input input-bordered" />
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Sign Up" />

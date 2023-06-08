@@ -10,12 +10,12 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-        signIn(email, password)
+        signIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user)
                 Swal.fire({
-                    title: 'User Login Successful',
+                    title: 'Logged in Successfully',
                     showClass: {
                         popup: 'animate__animated animate__fadeInDown'
                     },

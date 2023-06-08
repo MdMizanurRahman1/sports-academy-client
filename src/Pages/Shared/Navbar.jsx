@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error))
+    }
+
     return (
         <nav className="bg-gradient-to-r from-[#decba4] via-[#3E5151] to-[#4ca1af]">
             <div className="container mx-auto px-4 py-2 flex items-center justify-between">
@@ -18,11 +28,25 @@ const Navbar = () => {
                     <a href="#" className="text-black hover:text-white transition-colors duration-300">Instructors</a>
                     <a href="#" className="text-black hover:text-white transition-colors duration-300">Classes</a>
                     <a href="#" className="text-black hover:text-white transition-colors duration-300">Dashboard</a>
-                    <div className="flex items-center">
-                        <img src="#" alt="User Profile" className="w-8 h-8 rounded-full" />
-                    </div>
-                    <Link to='/login'><button className="text-black bg-[#decba4] hover:text-black transition-colors duration-300 btn">Login</button></Link>
+                    <label className="btn btn-ghost mr-2 btn-circle avatar">
+                        <div className="w-10  text-primary rounded-full ">
+
+                            <img src={user?.photoURL} alt="no photo" />
+                        </div>
+                    </label>
+
+                    {
+                        user ?
+                            <>
+                                <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
+                            </> :
+                            <>
+                                <Link to='/login'><button className="text-black bg-[#decba4] hover:text-black transition-colors duration-300 btn">Login</button></Link>
+                            </>
+                    }
+
                 </div>
+
                 <div className="lg:hidden">
                     <div className="dropdown dropdown-end">
                         <div tabIndex="0" className="m-1 btn btn-ghost btn-circle">
