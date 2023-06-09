@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import GoogleLoggedin from './GoogleLoggedin';
 
 
 const Register = () => {
@@ -93,7 +94,7 @@ const Register = () => {
                         </div>
                     </form>
                     <p className='text-center pb-3'><small>Already Registered? <Link to='/login'>Please LogIn!</Link></small></p>
-                    {/* <SocialLogin></SocialLogin> */}
+                    <GoogleLoggedin></GoogleLoggedin>
                 </div>
             </div>
         </div>

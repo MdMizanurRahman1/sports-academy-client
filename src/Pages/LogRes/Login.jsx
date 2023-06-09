@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import GoogleLoggedin from './GoogleLoggedin';
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
@@ -54,7 +55,7 @@ const Login = () => {
                         </div>
                     </form>
                     <p className='text-center pb-3'><small>New Here? <Link to='/register'>Create an account!</Link></small></p>
-                    {/* <SocialLogin></SocialLogin> */}
+                    <GoogleLoggedin></GoogleLoggedin>
                 </div>
             </div>
         </div>
