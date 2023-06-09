@@ -1,14 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import GoogleLoggedin from './GoogleLoggedin';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
-
+    const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
 
     const onSubmit = data => {
         signIn(data.email, data.password)
@@ -47,8 +53,29 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input {...register("password", { required: true })} type="password" name='password' placeholder="password" className="input input-bordered" />
-                            {errors.password && <span>Password is required</span>}
+                            <div className="relative">
+                                <input
+                                    {...register("password", { required: true })}
+                                    type={showPassword ? 'text' : 'password'}
+                                    name="password"
+                                    placeholder="Password"
+                                    className="input input-bordered pr-5"
+                                />
+                                <div className="absolute inset-y-0 right-0 flex items-center">
+                                    {showPassword ? (
+                                        <FaEyeSlash
+                                            className="h-8 w-8 text-white cursor-pointer"
+                                            onClick={togglePasswordVisibility}
+                                        />
+                                    ) : (
+                                        <FaEye
+                                            className="h-8 w-8 text-white cursor-pointer"
+                                            onClick={togglePasswordVisibility}
+                                        />
+                                    )}
+                                </div>
+                            </div>
+                            {errors.password && <span className="text-red-500">Password is required</span>}
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-accent hover:bg-cyan-700" type="submit" value="Login" />

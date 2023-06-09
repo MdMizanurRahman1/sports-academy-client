@@ -4,6 +4,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import GoogleLoggedin from './GoogleLoggedin';
+import { FaSignInAlt } from 'react-icons/fa';
 
 
 const Register = () => {
@@ -91,6 +92,7 @@ const Register = () => {
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-accent hover:bg-cyan-700" type="submit" value="Sign Up" />
+
                         </div>
                     </form>
                     <p className='text-center'><small>Already Registered? <Link to='/login'>Please LogIn!</Link></small></p>
