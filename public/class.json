@@ -1,0 +1,92 @@
+[
+    {
+        "_id": 1,
+        "image": "https://i.ibb.co/LS9x2Dr/sports-teacher-with-her-students.jpg",
+        "name": "Basketball Skills Development",
+        "instructor_name": "John Smith",
+        "students": 55,
+        "price": 50,
+        "rating": 4.2
+    },
+    {
+        "_id": 2,
+        "image": "https://i.ibb.co/nRTwJSW/man-training-kids-playing-football-full-shot.jpg",
+        "name": "Soccer Fundamentals",
+        "instructor_name": "Sarah Johnson",
+        "students": 45,
+        "price": 60,
+        "rating": 4.5
+    },
+    {
+        "_id": 3,
+        "image": "https://i.ibb.co/Y2WgfWW/sideways-kids-playing-doubles-tennis.jpg",
+        "name": "Tennis Techniques",
+        "instructor_name": "Michael Davis",
+        "students": 40,
+        "price": 40,
+        "rating": 5
+    },
+    {
+        "_id": 4,
+        "image": "https://i.ibb.co/dm9Jxvv/coach-teaching-kid-indoor-swimming-pool-how-swim-dive-swimming-lesson-kids-development.jpg",
+        "name": "Swimming Lessons",
+        "instructor_name": "Emily Wilson",
+        "students": 32,
+        "price": 55,
+        "rating": 3
+    },
+    {
+        "_id": 5,
+        "image": "https://i.ibb.co/Sfd63f5/smiling-ballerina-girl-posing-dance-floor-with-her-friend.jpg",
+        "name": "Gymnastics for Beginners",
+        "instructor_name": "David Thompson",
+        "students": 48,
+        "price": 70,
+        "rating": 4
+    },
+    {
+        "_id": 6,
+        "image": "https://i.ibb.co/w0qXr3q/medium-shot-sporty-kids-gym.jpg",
+        "name": "Volleyball Skills Training",
+        "instructor_name": "Jessica Lee",
+        "students": 35,
+        "price": 45,
+        "rating": 3.5
+    },
+    {
+        "_id": 7,
+        "image": "https://i.ibb.co/8xVcLYC/group-boys-girl-fighting-aikido-training-martial-arts-school-healthy-lifestyle-sports-concept.jpg",
+        "name": "Martial Arts Workshop",
+        "instructor_name": "Ryan Garcia",
+        "students": 20,
+        "price": 65,
+        "rating": 4
+    },
+    {
+        "_id": 8,
+        "image": "https://i.ibb.co/M6dW8HN/front-view-girls-running-track.jpg",
+        "name": "Track and Field Sprinting",
+        "instructor_name": "Olivia Martinez",
+        "students": 18,
+        "price": 50,
+        "rating": 4.7
+    },
+    {
+        "_id": 9,
+        "image": "https://i.ibb.co/ncH8fNJ/full-shot-woman-kids-meditating.jpg",
+        "name": "Yoga and Mindfulness",
+        "instructor_name": "Daniel Brown",
+        "students": 15,
+        "price": 35,
+        "rating": 4.5
+    },
+    {
+        "_id": 10,
+        "image": "https://i.ibb.co/h84N9jp/young-boxer-trainer-is-training-new-girl-boxer-special-competitions.jpg",
+        "name": "Boxing Techniques",
+        "instructor_name": "Sophia Adams",
+        "students": 22,
+        "price": 55,
+        "rating": 4.8
+    }
+]
