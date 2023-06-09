@@ -24,7 +24,7 @@ const GoogleLoggedin = () => {
     return (
         <div>
             <div className="divider"></div>
-            <button onClick={handleGoogleSignIn} className="btn w-full mt-4 bg-white text-black hover:bg-gray-200">
+            <button onClick={handleGoogleSignIn} className="btn w-full mt-4 bg-white text-black hover:bg-slate-300">
                 <FaGoogle className="mr-3 text-red-500 " />
                 <span> Login with Google</span>
             </button>

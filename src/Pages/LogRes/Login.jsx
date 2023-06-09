@@ -28,13 +28,13 @@ const Login = () => {
 
     };
     return (
-        <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+        <div className="hero min-h-screen bg-[#d6f2f2] py-12 ">
+            <div className="hero-content flex-col lg:flex-row-reverse bg-[#94c4c4] rounded-lg">
+                <div className="lg:text-left w-full shadow-none">
+                    <h1 className="text-5xl font-bold text-center mb-6">Login Now!</h1>
+                    <img className='w-[500px] rounded-lg ' src="https://i.ibb.co/2PwzkFT/2853458.jpg" alt="" />
                 </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-[#94c4c4]">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                         <div className="form-control">
                             <label className="label">
@@ -51,7 +51,7 @@ const Login = () => {
                             {errors.password && <span>Password is required</span>}
                         </div>
                         <div className="form-control mt-6">
-                            <input className="btn btn-primary" type="submit" value="Login" />
+                            <input className="btn btn-accent hover:bg-cyan-700" type="submit" value="Login" />
                         </div>
                     </form>
                     <p className='text-center pb-3'><small>New Here? <Link to='/register'>Create an account!</Link></small></p>
