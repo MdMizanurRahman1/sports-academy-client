@@ -25,7 +25,7 @@ const Navbar = () => {
                 </div>
                 <div className="hidden lg:flex items-center space-x-6">
                     <Link to='/' className="text-black hover:text-white transition-colors duration-300">Home</Link>
-                    <a href="#" className="text-black hover:text-white transition-colors duration-300">Instructors</a>
+                    <Link to='/instructors' className="text-black hover:text-white transition-colors duration-300">Instructors</Link>
                     <a href="#" className="text-black hover:text-white transition-colors duration-300">Classes</a>
                     <a href="#" className="text-black hover:text-white transition-colors duration-300">Dashboard</a>
                     <label className="btn btn-ghost mr-2 btn-circle avatar">
