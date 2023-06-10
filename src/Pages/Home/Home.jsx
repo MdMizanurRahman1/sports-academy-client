@@ -2,6 +2,8 @@ import React from 'react';
 import Banner from './Banner';
 import Gallery from '../Gallery/Gallery';
 import PopularClass from './PopularClass';
+import PopularInstructor from './PopularInstructor/PopularInstructor';
+
 
 
 const Home = () => {
@@ -10,6 +12,7 @@ const Home = () => {
             <Banner></Banner>
             <Gallery></Gallery>
             <PopularClass></PopularClass>
+            <PopularInstructor></PopularInstructor>
         </div>
     );
 };
