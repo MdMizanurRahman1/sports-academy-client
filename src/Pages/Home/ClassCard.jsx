@@ -1,8 +1,61 @@
 import { AiOutlineArrowRight, AiOutlineDollarCircle, AiOutlineNumber, AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import useCard from "../../hooks/useCard";
+import { useContext } from "react";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
+
 
 const ClassCard = ({ classData }) => {
-    const { name, image, instructor_name, students, price } = classData;
+    const { name, _id, image, instructor_name, seats, price } = classData;
+    const { user } = useContext(AuthContext);
+    const [, refetch] = useCard();
+
+
+    const handleAddToCart = (classData) => {
+        console.log(classData)
+        if (user && user.email) {
+            const orderItem = { name, _id, instructor_name, image, price, email: user.email }
+            fetch('http://localhost:5000/addToCard', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(orderItem)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        refetch();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Oder Item Added',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
+        }
+        else {
+            Swal.fire({
+                title: 'Please login to course?',
+
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Login it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    console.log('/login')
+                }
+            })
+        }
+    }
+
+
 
 
     return (
@@ -19,15 +72,15 @@ const ClassCard = ({ classData }) => {
                         </h3>
                         <div className='flex gap-3'>
                             <p className='text-start flex items-center'>
-                                <AiOutlineNumber className='mr-2 text-blue-500' /> Total students: {students}
+                                <AiOutlineNumber className='mr-2 text-blue-500' /> Available seats: {seats}
                             </p>
                             <p className='text-start flex items-center'>
                                 <AiOutlineDollarCircle className='mr-2 text-blue-500' /> Price: ${price}
                             </p>
                         </div>
                         <div className='card-actions justify-end mt-3'>
-                            <Link to='/class-details'>
-                                <button className='btn btn-error btn-outline btn-sm flex items-center'>
+                            <Link>
+                                <button onClick={() => handleAddToCart(classData)} className='btn btn-error btn-outline btn-sm flex items-center'>
                                     Select <AiOutlineArrowRight />
                                 </button>
                             </Link>
@@ -40,4 +93,6 @@ const ClassCard = ({ classData }) => {
 };
 
 export default ClassCard;
+
+
 
