@@ -1,8 +1,13 @@
 import React from 'react';
-import { FaBook, FaBookOpen, FaChalkboardTeacher, FaPlusCircle, FaTasks, FaUser, FaUsers, FaWallet } from 'react-icons/fa';
+import { FaBook, FaBookOpen, FaChalkboardTeacher, FaEnvelope, FaInfo, FaInfoCircle, FaPlusCircle, FaTasks, FaUser, FaUsers, FaWallet } from 'react-icons/fa';
 import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
+
+    //TODO: load data from the server to have dynamic isAdmin based on data.
+    const isAdmin = true;
+    const isInstructor = true;
+
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -17,21 +22,60 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                     {/* Sidebar content here */}
-                    <li><Link to='/' className='text-lg'><FaUser className='text-blue-500 w-6 h-6'></FaUser> Home</Link></li>
-                    <li><Link to='/dashboard/selectedClass' className='text-lg'><FaChalkboardTeacher className='text-blue-500 w-6 h-6'></FaChalkboardTeacher> Selected Classes</Link></li>
-                    <li><Link className='text-lg'><FaBook className='text-blue-500 w-6 h-6'></FaBook>Enrolled Classes</Link></li>
-                    <li><Link className='text-lg'><FaWallet className='text-blue-500 w-6 h-6'></FaWallet> Payment History</Link></li>
-
-
-
-                    <li><Link to='/' className='text-lg'><FaUser className='text-sky-500 w-6 h-6'></FaUser> Home</Link></li>
-                    <li><Link className='text-lg'><FaPlusCircle className='text-sky-500 w-6 h-6'></FaPlusCircle> Add A Class</Link></li>
-                    <li><Link className='text-lg'><FaBookOpen className='text-sky-500 w-6 h-6'></FaBookOpen> My Classes</Link></li>
-
-
-                    <li><Link to='/' className='text-lg'><FaUser className='text-pink-500 w-6 h-6'></FaUser> Home</Link></li>
-                    <li><Link className='text-lg'><FaTasks className='text-pink-500 w-6 h-6'></FaTasks> Manage Classes</Link></li>
-                    <li><Link className='text-lg'><FaUsers className='text-pink-500 w-6 h-6'></FaUsers> Manage Users</Link></li>
+                    <li>
+                        <Link to='/' className='text-lg'>
+                            <FaUser className='text-blue-500 w-6 h-6'></FaUser> Home
+                        </Link>
+                    </li>
+                    {isAdmin ? (
+                        <>
+                            <li>
+                                <Link className='text-lg'>
+                                    <FaTasks className='text-pink-500 w-6 h-6'></FaTasks> Manage Classes
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to='/dashboard/allusers' className='text-lg'>
+                                    <FaUsers className='text-pink-500 w-6 h-6'></FaUsers> Manage Users
+                                </Link>
+                            </li>
+                        </>
+                    ) : (
+                        isInstructor ? (
+                            <>
+                                <li>
+                                    <Link className='text-lg'>
+                                        <FaPlusCircle className='text-sky-500 w-6 h-6'></FaPlusCircle> Add A Class
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link className='text-lg'>
+                                        <FaBookOpen className='text-sky-500 w-6 h-6'></FaBookOpen> My Classes
+                                    </Link>
+                                </li>
+                            </>
+                        ) : (
+                            <>
+                                <li>
+                                    <Link to='/dashboard/selectedClass' className='text-lg'>
+                                        <FaChalkboardTeacher className='text-blue-500 w-6 h-6'></FaChalkboardTeacher> Selected Classes
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link className='text-lg'>
+                                        <FaBook className='text-blue-500 w-6 h-6'></FaBook> Enrolled Classes
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link className='text-lg'>
+                                        <FaWallet className='text-blue-500 w-6 h-6'></FaWallet> Payment History
+                                    </Link>
+                                </li>
+                            </>
+                        )
+                    )}
+                    <Link className='text-lg p-4 flex'><FaInfo className='text-blue-500 w-6 h-6 ' />About</Link>
+                    <Link className='text-lg p-4 flex gap-1'><FaEnvelope className='text-blue-500 w-6 h-6' />Contact</Link>
                 </ul>
 
             </div>

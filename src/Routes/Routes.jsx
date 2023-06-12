@@ -10,6 +10,8 @@ import AllInstructor from "../Pages/Home/PopularInstructor/AllInstructor";
 import Dashboard from "../Dashboard/Dashboard";
 import SelectedClass from "../Dashboard/Student/SelectedClass";
 import ClassesPage from "../Pages/Home/ClassesPage";
+import PrivateRoutes from "./PrivateRoutes";
+import AllUsers from "../Dashboard/AllUsers/AllUsers";
 
 
 export const router = createBrowserRouter([
@@ -43,11 +45,15 @@ export const router = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
         children: [
             {
                 path: "selectedClass",
                 element: <SelectedClass></SelectedClass>,
+            },
+            {
+                path: "allusers",
+                element: <AllUsers></AllUsers>,
             },
         ]
     },
