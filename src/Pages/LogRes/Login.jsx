@@ -2,12 +2,17 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GoogleLoggedin from './GoogleLoggedin';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
+
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -30,9 +35,12 @@ const Login = () => {
                         popup: 'animate__animated animate__fadeOutUp'
                     }
                 });
+
+                navigate(from, { replace: true });
             })
 
     };
+
     return (
         <div className="hero min-h-screen bg-[#d6f2f2] py-12 ">
             <div className="hero-content flex-col lg:flex-row-reverse bg-[#94c4c4] rounded-lg">
