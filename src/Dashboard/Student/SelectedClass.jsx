@@ -1,16 +1,56 @@
 import React from 'react';
 import useCard from '../../hooks/useCard';
+import { FaTrashAlt } from 'react-icons/fa';
+import { AiOutlinePayCircle } from 'react-icons/ai';
+import Swal from 'sweetalert2';
 
 const SelectedClass = () => {
-    const [card] = useCard();
+    const [cart, refetch] = useCard();
+
+
+
+    const handleDelete = singleCard => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to get back this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/card/${singleCard._id}`, {
+                    method: 'DELETE'
+                })
+
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data, 'deletedd is done');
+                        if (data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire(
+                                'Deleted!',
+                                'Your class has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+            }
+        })
+    }
+
+
+
+
     return (
-        <div className='w-full'>
-            <h2 className='uppercase font-semibold text-center'>seleted class: {card.length}</h2>
-            <div className="overflow-x-auto py-16">
+        <div className='w-full my-10'>
+            <h2 className='uppercase font-bold text-center'>seleted class: {cart.length}</h2>
+            <div className="overflow-x-auto mt-5">
                 <table className="table ">
                     {/* head */}
                     <thead>
-                        <tr>
+                        <tr className='uppercase font-semibold'>
                             <th>#</th>
                             <th>Image</th>
                             <th>Name</th>
@@ -21,7 +61,7 @@ const SelectedClass = () => {
                     </thead>
                     <tbody>
                         {
-                            card.map((singleCard, index) =>
+                            cart.map((singleCard, index) =>
                                 <tr key={singleCard._id}>
                                     <td>{index + 1}</td>
                                     <td>
@@ -38,10 +78,10 @@ const SelectedClass = () => {
                                     </td>
                                     <td>{singleCard.email}</td>
                                     <th>
-                                        <button className="btn btn-error btn-outline btn-xs">Delete</button>
+                                        <button onClick={() => handleDelete(singleCard)} className="btn btn-error btn-outline btn-xs"><FaTrashAlt /></button>
                                     </th>
                                     <th>
-                                        <button className="btn btn-error btn-outline btn-xs">Pay</button>
+                                        <button className="btn btn-error btn-outline btn-xs"><AiOutlinePayCircle /></button>
                                     </th>
                                 </tr>
 
@@ -55,3 +95,12 @@ const SelectedClass = () => {
 };
 
 export default SelectedClass;
+
+
+
+
+// <th>
+//   <Link to={`/payment/${singleCard._id}`} className="btn btn-error btn-outline btn-xs">
+//     <AiOutlinePayCircle />
+//   </Link>
+// </th>

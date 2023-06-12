@@ -16,7 +16,7 @@ const ClassCard = ({ classData }) => {
         console.log(classData)
         if (user && user.email) {
             const orderItem = { name, _id, instructor_name, image, price, email: user.email }
-            fetch('http://localhost:5000/addToCard', {
+            fetch('http://localhost:5000/card', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
