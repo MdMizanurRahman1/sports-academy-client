@@ -16,6 +16,7 @@ const Dashboard = () => {
 
     return (
         <div className="drawer lg:drawer-open">
+
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col items-center justify-center">
                 {/* Page content here */}
@@ -36,7 +37,7 @@ const Dashboard = () => {
                     {isAdmin ? (
                         <>
                             <li>
-                                <Link className='text-lg'>
+                                <Link to='/dashboard/manageUsers' className='text-lg'>
                                     <FaTasks className='text-pink-500 w-6 h-6'></FaTasks> Manage Classes
                                 </Link>
                             </li>

@@ -1,15 +1,16 @@
-
-import useAdd from '../../hooks/useAdd';
-
-const AllInstructor = () => {
+import React from 'react';
+import useClass from '../../hooks/useClass';
 
 
+const ManageUsers = () => {
 
-    const [manage] = useAdd();
-    console.log(manage);
+    const [myclass] = useClass();
+    console.log(myclass, 'this is my class manage');
+
 
     return (
         <div className="overflow-x-auto py-16 mx-10 w-full">
+            <h2 className='text-center font-semibold text-2xl my-7'>All Instructors</h2>
             <table className="table ">
 
 
@@ -27,8 +28,9 @@ const AllInstructor = () => {
                     </tr>
                 </thead>
                 <tbody>
+
                     {
-                        manage.map((instructor, index) =>
+                        myclass.map((instructor, index) =>
                             <tr key={instructor._id}>
                                 <td>{index + 1}</td>
                                 <td>
@@ -63,4 +65,4 @@ const AllInstructor = () => {
     );
 };
 
-export default AllInstructor;
+export default ManageUsers;
