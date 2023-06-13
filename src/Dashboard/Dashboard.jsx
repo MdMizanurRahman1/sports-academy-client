@@ -55,7 +55,7 @@ const Dashboard = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className='text-lg'>
+                                    <Link to='/dashboard/myclasses' className='text-lg'>
                                         <FaBookOpen className='text-sky-500 w-6 h-6'></FaBookOpen> My Classes
                                     </Link>
                                 </li>
