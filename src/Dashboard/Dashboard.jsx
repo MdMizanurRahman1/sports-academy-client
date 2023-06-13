@@ -50,7 +50,7 @@ const Dashboard = () => {
                         isInstructor ? (
                             <>
                                 <li>
-                                    <Link className='text-lg'>
+                                    <Link to='/dashboard/addItem' className='text-lg'>
                                         <FaPlusCircle className='text-sky-500 w-6 h-6'></FaPlusCircle> Add A Class
                                     </Link>
                                 </li>
