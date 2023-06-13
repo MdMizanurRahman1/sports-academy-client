@@ -1,12 +1,18 @@
 import React from 'react';
-import { FaBook, FaBookOpen, FaChalkboardTeacher, FaEnvelope, FaInfo, FaInfoCircle, FaPlusCircle, FaTasks, FaUser, FaUsers, FaWallet } from 'react-icons/fa';
+import { FaBook, FaBookOpen, FaChalkboardTeacher, FaEnvelope, FaInfo, FaPlusCircle, FaTasks, FaUser, FaUsers, FaWallet } from 'react-icons/fa';
 import { Link, Outlet } from 'react-router-dom';
+import useAdmin from '../hooks/useAdmin';
+import useInstructor from '../hooks/useInstructor';
 
 const Dashboard = () => {
 
     //TODO: load data from the server to have dynamic isAdmin based on data.
-    const isAdmin = true;
-    const isInstructor = true;
+    // const isAdmin = true;
+
+    const [isAdmin] = useAdmin();
+    // const isInstructor = true;
+
+    const [isInstructor] = useInstructor();
 
     return (
         <div className="drawer lg:drawer-open">
