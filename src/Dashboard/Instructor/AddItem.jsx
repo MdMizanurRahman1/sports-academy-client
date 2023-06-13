@@ -1,15 +1,55 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../hooks/useAuth';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
+
+const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const AddItem = () => {
+    const [axiosSecure] = useAxiosSecure()
     const { register, handleSubmit, reset } = useForm();
     const { user, loading } = useAuth();
 
-    const onSubmit = data => {
-        console.log(data);
-    }
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
+    const onSubmit = data => {
+        const formData = new FormData();
+        formData.append('image', data.image[0])
+
+        fetch(img_hosting_url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                if (imgResponse.success) {
+                    const imgURL = imgResponse.data.display_url;
+                    const { name, price, seats, instructor_name, email } = data;
+                    console.log(data);
+                    const newItem = {
+                        name, price: parseFloat(price), seats, email, instructor_name, image: imgURL, status: "pending",
+                        enrolled: parseInt(0),
+                        feedback: ''
+                    }
+                    console.log(newItem);
+                    axiosSecure.post('/add', newItem)
+                        .then(data => {
+                            console.log('after posting new class', data.data)
+                            if (data.data.insertedId) {
+                                reset();
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Item added successfully',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        })
+                }
+            })
+    }
 
 
     return (
