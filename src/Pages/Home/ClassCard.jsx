@@ -16,7 +16,7 @@ const ClassCard = ({ classData }) => {
         console.log(classData)
         if (user && user.email) {
             const orderItem = { name, _id, instructor_name, image, price, email: user.email }
-            fetch('http://localhost:5000/card', {
+            fetch('https://sports-academy-server-liart.vercel.app/card', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -93,6 +93,3 @@ const ClassCard = ({ classData }) => {
 };
 
 export default ClassCard;
-
-
-

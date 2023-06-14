@@ -6,7 +6,7 @@ const usePay = () => {
     const { data: payments = [], isLoading: loading, refetch } = useQuery({
         queryKey: ['payments'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/payments');
+            const res = await fetch('https://sports-academy-server-liart.vercel.app/payments');
             return res.json();
         }
     })

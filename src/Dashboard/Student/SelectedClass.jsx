@@ -21,7 +21,7 @@ const SelectedClass = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/card/${singleCard._id}`, {
+                fetch(`https://sports-academy-server-liart.vercel.app/card/${singleCard._id}`, {
                     method: 'DELETE'
                 })
 

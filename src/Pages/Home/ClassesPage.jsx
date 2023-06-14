@@ -9,7 +9,7 @@ const ClassesPage = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/class')
+        fetch('https://sports-academy-server-liart.vercel.app/class')
             .then((res) => res.json())
             .then((data) => {
                 setAllClasses(data);
