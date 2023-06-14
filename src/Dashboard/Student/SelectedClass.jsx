@@ -1,8 +1,9 @@
 import React from 'react';
 import useCard from '../../hooks/useCard';
 import { FaTrashAlt } from 'react-icons/fa';
-import { AiOutlinePayCircle } from 'react-icons/ai';
+
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const SelectedClass = () => {
     const [cart, refetch] = useCard();
@@ -55,6 +56,8 @@ const SelectedClass = () => {
                             <th>Image</th>
                             <th>Name</th>
                             <th>Email</th>
+                            {/* <th>Seats</th> */}
+                            <th>Price</th>
                             <th>Delete</th>
                             <th>Pay</th>
                         </tr>
@@ -77,11 +80,12 @@ const SelectedClass = () => {
                                         {singleCard.name}
                                     </td>
                                     <td>{singleCard.email}</td>
+                                    <td>{singleCard.price}</td>
                                     <th>
                                         <button onClick={() => handleDelete(singleCard)} className="btn btn-error btn-outline btn-xs"><FaTrashAlt /></button>
                                     </th>
                                     <th>
-                                        <button className="btn btn-error btn-outline btn-xs"><AiOutlinePayCircle /></button>
+                                        <Link to='/dashboard/payment' state={singleCard}><button className="btn btn-error btn-sm btn-outline ">Pay Now</button></Link>
                                     </th>
                                 </tr>
 
