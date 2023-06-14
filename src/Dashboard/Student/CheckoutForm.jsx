@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import './CheckoutForm.css'
 
 const CheckoutForm = ({ price, cart }) => {
 
@@ -92,7 +93,7 @@ const CheckoutForm = ({ price, cart }) => {
                     }}
                 />
                 <button className='btn mt-4 btn-sm btn-primary' type="submit" disabled={!stripe}>
-                    Pay {price}
+                    Pay ${price}
                 </button>
             </form>
             {

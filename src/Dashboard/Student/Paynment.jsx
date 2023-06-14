@@ -13,7 +13,7 @@ const Paynment = () => {
     const cartData = location.state;
     // const { name, image, students, price, seats, instructor_name } = cartData
     console.log(cartData, ' i have got hte data here');
-    const price = cartData.price;
+    const price = parseFloat(cartData.price);
     const name = cartData.name;
     const email = cartData.email;
 
