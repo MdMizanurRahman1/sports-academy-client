@@ -4,7 +4,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    const [isDarkMode, setIsDarkMode] = useState(false);
+
 
 
     const handleLogOut = () => {
@@ -13,10 +13,6 @@ const Navbar = () => {
             .catch(error => console.log(error))
     }
 
-    const toggleTheme = () => {
-        setIsDarkMode(prevMode => !prevMode);
-        document.documentElement.classList.toggle('dark-mode');
-    };
 
 
     return (
@@ -53,9 +49,7 @@ const Navbar = () => {
                                 <Link to='/login'><button className="text-black bg-[#decba4] hover:text-black transition-colors duration-300 btn">Login</button></Link>
                             </>
                     }
-                    <button onClick={toggleTheme} className="text-black hover:text-white transition-colors duration-300">
-                        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-                    </button>
+
                 </div>
 
                 <div className="lg:hidden">
