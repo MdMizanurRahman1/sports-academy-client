@@ -21,12 +21,12 @@ const PopularInstructor = () => {
 
     return (
         <div className='mb-14 mt-28 '>
-            <h1 className='text-center text-3xl font-bold mb-5'>
+            <h1 className='text-center text-3xl font-bold mb-5 text-gray-500'>
                 <FaQuoteLeft className='inline-block mr-2 text-yellow-500 h-14 w-14' />
                 Trained <br />By Reliable Instructors
                 <FaQuoteRight className='inline-block ml-2 text-yellow-500 h-14 w-14' />
             </h1>
-            <div className='grid md:grid-cols-3 gap-8 sm:mx-auto mt-10 '>
+            <div className='grid md:grid-cols-3 gap-8 sm:mx-auto mt-10 text-gray-500 '>
                 {filteredInstructors.map((instructor) => (
                     <InstuctorNumber key={instructor._id} instructor={instructor} />
                 ))}

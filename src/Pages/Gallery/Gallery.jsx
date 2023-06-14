@@ -1,12 +1,12 @@
 import React from 'react';
 import { Reveal, Fade } from 'react-awesome-reveal';
-import { AiFillFileImage, AiOutlineFileImage } from 'react-icons/ai';
+import { AiOutlineFileImage } from 'react-icons/ai';
 
 const Gallery = () => {
     return (
         <div>
             <>
-                <h3 className='justify-center flex  mb-7 text-3xl font-semibold text-slate-600'> <AiOutlineFileImage className='text-red-700 h-10 w-12 mr-2' />Gallery Academy</h3>
+                <h3 className='justify-center flex  mb-7 text-3xl font-semibold text-gray-500'> <AiOutlineFileImage className='text-red-700 h-10 w-12 mr-2' />Gallery Academy</h3>
             </>
             <div className="flex overflow-x-hidden overflow-y-hidden mb-10">
                 <div className="grid grid-cols-3 gap-5">

@@ -1,9 +1,21 @@
-import React from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-
+import React, { useEffect, useRef } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const BannerSlider = () => {
+    const sliderRef = useRef(null);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            sliderRef.current.slickNext();
+        }, 3000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+
     const slides = [
         {
             imageUrl: 'https://i.ibb.co/QMGTwPf/medium-shot-happy-kids-with-prize.jpg',
@@ -32,21 +44,30 @@ const BannerSlider = () => {
         },
     ];
 
-    const renderedSlides = slides.map((slide, index) => (
-        <div key={index}>
-            <img src={slide.imageUrl} alt={`Slide ${index + 1}`} className="carousel-image h-[700px] mb-5" />
-            <div >
-                <h2 className="text-2xl font-semibold">{slide.title}</h2>
-                <p className=" text-base font-normal">{slide.description}</p>
-            </div>
-        </div>
-    ));
+    const settings = {
+        dots: true,
+        infinite: true,
+        autoplay: false, // Disable autoplay as we'll handle it manually
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    };
 
     return (
-        <div className="carousel-container mb-20">
-            <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
-                {renderedSlides}
-            </Carousel>
+        <div className="carousel-container mb-20 overflow-hidden">
+            <Slider {...settings} ref={sliderRef}>
+                {slides.map((slide, index) => (
+                    <div key={index} className="carousel-slide">
+                        <img src={slide.imageUrl} alt={`Slide ${index + 1}`} className="carousel-image" />
+                        <div className="carousel-content">
+                            <div className="carousel-content-inner mt-3">
+                                <h2 className="text-2xl font-semibold text-gray-500 text-center">{slide.title}</h2>
+                                <p className="text-base font-normal text-gray-500 text-center">{slide.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </Slider>
         </div>
     );
 };

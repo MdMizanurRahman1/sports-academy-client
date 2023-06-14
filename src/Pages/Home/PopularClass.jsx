@@ -23,7 +23,7 @@ const PopularClass = () => {
 
     return (
         <div className='mb-14 mt-28'>
-            <h1 className='text-center text-3xl font-bold mb-5'>
+            <h1 className='text-center text-3xl font-bold mb-5 text-gray-500'>
                 <AiFillFire className='inline-block mr-2 text-yellow-500' />
                 Popular Classes
             </h1>

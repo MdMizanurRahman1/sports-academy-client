@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
-        <div style={{ maxWidth: '1240px' }} className='mx-auto'>
+        <div style={{ maxWidth: '1240px' }} className='mx-auto dark:bg-black'>
           <RouterProvider router={router} />
         </div>
       </QueryClientProvider>
