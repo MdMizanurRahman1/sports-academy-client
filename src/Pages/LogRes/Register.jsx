@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
@@ -12,8 +12,13 @@ const Register = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
+    const [confirmPassword, setConfirmPassword] = useState('')
 
     const onSubmit = data => {
+        if (data.password !== confirmPassword) {
+            alert('passwords don not match');
+            return;
+        }
         console.log(data);
 
         createUser(data.email, data.password)
@@ -99,7 +104,9 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Confirm Password</span>
                             </label>
-                            <input type="password" name='confirmPassword' placeholder="Confirm password" className="input input-bordered" />
+                            <input type="password" value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                name='confirmPassword' placeholder="Confirm password" className="input input-bordered" />
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-accent hover:bg-cyan-700" type="submit" value="Sign Up" />

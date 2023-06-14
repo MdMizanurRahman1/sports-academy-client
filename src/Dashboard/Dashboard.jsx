@@ -74,7 +74,7 @@ const Dashboard = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className='text-lg'>
+                                    <Link to='/dashboard/history' className='text-lg'>
                                         <FaWallet className='text-blue-500 w-6 h-6'></FaWallet> Payment History
                                     </Link>
                                 </li>
