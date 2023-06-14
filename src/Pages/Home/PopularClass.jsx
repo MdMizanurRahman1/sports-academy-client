@@ -16,10 +16,10 @@ const PopularClass = () => {
     }, []);
 
     // Filter and get only the top 6 classes by number of students
-    const filteredClasses = classes
-        .filter((classItem) => classItem.students)
-        .sort((a, b) => b.students - a.students)
-        .slice(0, 6);
+    // const filteredClasses = classes
+    //     .filter((classItem) => classItem.students)
+    //     .sort((a, b) => b.students - a.students)
+    //     .slice(0, 6);
 
     return (
         <div className='mb-14 mt-28'>
@@ -28,7 +28,7 @@ const PopularClass = () => {
                 Popular Classes
             </h1>
             <div className='grid md:grid-cols-2 gap-5'>
-                {filteredClasses.map((classItem) => (
+                {classes.map((classItem) => (
                     <PopularClassNumbers key={classItem._id} classItem={classItem} />
                 ))}
             </div>
