@@ -4,9 +4,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import './CheckoutForm.css'
 
-const CheckoutForm = ({ price, cart }) => {
-
-    console.log(cart, price, 'parts are here from');
+const CheckoutForm = ({ price, name, id }) => {
 
     const { user } = useContext(AuthContext);
 
@@ -15,7 +13,8 @@ const CheckoutForm = ({ price, cart }) => {
     const elements = useElements();
     const [cardError, setCardError] = useState('');
     const [clientSecret, setClientSecret] = useState('')
-
+    const [processing, setProcessing] = useState(false);
+    const [transactionId, setTransactionId] = useState('');
 
 
 
@@ -55,9 +54,10 @@ const CheckoutForm = ({ price, cart }) => {
             setCardError(error.message);
         } else {
             setCardError('');
-            console.log('PaymentMethod', paymentMethod);
+            // console.log('PaymentMethod', paymentMethod);
         }
 
+        setProcessing(true);
         const { paymentIntent, error: confirmError } =
             await stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
@@ -68,8 +68,33 @@ const CheckoutForm = ({ price, cart }) => {
                     },
                 },
             })
+        if (confirmError) {
+            console.log(confirmError)
+            setCardError(confirmError.message)
+        }
 
+        console.log('payment intent', paymentIntent)
+        setProcessing(false)
+        if (paymentIntent.status === 'succeeded') {
+            setTransactionId(paymentIntent.id)
 
+            const payment = {
+                email: user?.email,
+                transactionId: paymentIntent.id,
+                price,
+                date: new Date(),
+                status: 'service pending',
+                name,
+                id
+            }
+            axiosSecure.post('/payments', payment)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.insertedId) {
+                        // display confirm
+                    }
+                })
+        }
 
     }
 
@@ -92,14 +117,14 @@ const CheckoutForm = ({ price, cart }) => {
                         },
                     }}
                 />
-                <button className='btn mt-4 btn-sm btn-primary' type="submit" disabled={!stripe}>
+                <button className='btn mt-4 btn-sm btn-primary' type="submit" disabled={!stripe || !clientSecret || processing}>
                     Pay ${price}
                 </button>
             </form>
             {
                 cardError && <p className='text-red-400 ml-8'>{cardError}</p>
             }
-            {/* {transactionId && <p className='text-green-500 ml-8'>Transaction completed with transactionId: {transactionId}</p>} */}
+            {transactionId && <p className='text-green-500 ml-8'>Transaction completed with transactionId: {transactionId}</p>}
         </>
     );
 };

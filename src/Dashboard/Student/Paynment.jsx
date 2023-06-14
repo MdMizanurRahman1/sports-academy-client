@@ -15,7 +15,7 @@ const Paynment = () => {
     console.log(cartData, ' i have got hte data here');
     const price = parseFloat(cartData.price);
     const name = cartData.name;
-    const email = cartData.email;
+    const id = cartData._id;
 
 
     // const [cart] = useCart();
@@ -29,7 +29,7 @@ const Paynment = () => {
             <h2 className='text-2xl font-bold text-center my-10'>Pay now</h2>
 
             <Elements stripe={stripePromise}>
-                <CheckoutForm price={price} cart={cart}></CheckoutForm>
+                <CheckoutForm price={price} name={name} id={id}></CheckoutForm>
             </Elements>
         </div>
     );
